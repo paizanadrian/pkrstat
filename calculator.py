@@ -3,10 +3,10 @@ import streamlit.components.v1 as components
 import random
 from itertools import combinations
 
-def rerun():
-    if hasattr(st, 'rerun'):
-        rerun()
-    else:
+def do_rerun():
+    try:
+        st.rerun()
+    except AttributeError:
         st.experimental_rerun()
 
 # ─── Constants ────────────────────────────────────────────────────────────────
@@ -169,7 +169,7 @@ with st.sidebar:
     if st.button("🔄 Reset complet", use_container_width=True, key="calc_reset"):
         st.session_state.sel = []
         st.session_state.wp_cache = {}
-        rerun()
+        do_rerun()
 
 # ─── Init ─────────────────────────────────────────────────────────────────────
 if 'sel' not in st.session_state:
@@ -297,7 +297,7 @@ if n < 7:
                     btn_clicked = st.button(label, key=f"c_{val}_{suit}", use_container_width=True)
                     if btn_clicked:
                         st.session_state.sel.append(list(card))
-                        rerun()
+                        do_rerun()
 
 # ─── Undo button ──────────────────────────────────────────────────────────────
 if sel:
@@ -306,7 +306,7 @@ if sel:
     with undo_col:
         if st.button("↩ Anulează ultima carte", use_container_width=True, key="calc_undo"):
             st.session_state.sel.pop()
-            rerun()
+            do_rerun()
 
 # ─── Colorează simbolurile roșii pe butoanele de cărți ───────────────────────
 components.html("""
