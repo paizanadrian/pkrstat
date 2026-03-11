@@ -158,7 +158,7 @@ with st.sidebar:
     if st.button("🔄 Reset complet", use_container_width=True, key="calc_reset"):
         st.session_state.sel = []
         st.session_state.wp_cache = {}
-        st.experimental_rerun()
+        st.rerun()
 
 # ─── Init ─────────────────────────────────────────────────────────────────────
 if 'sel' not in st.session_state:
