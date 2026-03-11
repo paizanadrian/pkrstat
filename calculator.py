@@ -41,7 +41,7 @@ def rank5(hand):
 def best_rank(hole, board):
     return max(rank5(list(c)) for c in combinations(hole + board, 5))
 
-def win_probability(my_hand, known_board, n_players, n_sim=2000):
+def win_probability(my_hand, known_board, n_players, n_sim=300):
     all_cards = [(v, s) for s in SUITS for v in VALUES]
     used      = set(map(tuple, my_hand + known_board))
     remaining = [c for c in all_cards if tuple(c) not in used]
@@ -294,7 +294,7 @@ if n < 7:
                     txt_color = "#c00" if is_red else "#111"
                     # Inline style override via markdown trick for red suits
                     label = f"{val}\n{suit}"
-                    btn_clicked = st.button(label, key=f"c_{val}_{suit}")
+                    btn_clicked = st.button(label, key=f"c_{val}_{suit}", use_container_width=True)
                     if btn_clicked:
                         st.session_state.sel.append(list(card))
                         rerun()
