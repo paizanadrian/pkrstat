@@ -35,7 +35,7 @@ def rank5(hand):
 def best_rank(hole, board):
     return max(rank5(list(c)) for c in combinations(hole + board, 5))
 
-def win_probability(my_hand, known_board, n_players, n_sim=2000):
+def win_probability(my_hand, known_board, n_players, n_sim=300):
     all_cards = [(v, s) for s in SUITS for v in VALUES]
     used      = set(map(tuple, my_hand + known_board))
     remaining = [c for c in all_cards if tuple(c) not in used]
