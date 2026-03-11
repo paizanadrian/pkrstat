@@ -286,7 +286,7 @@ if n < 7:
                     btn_clicked = st.button(label, key=f"c_{val}_{suit}")
                     if btn_clicked:
                         st.session_state.sel.append(list(card))
-                        st.experimental_rerun()
+                        st.rerun()
 
 # ─── Undo button ──────────────────────────────────────────────────────────────
 if sel:
@@ -295,7 +295,7 @@ if sel:
     with undo_col:
         if st.button("↩ Anulează ultima carte", use_container_width=True, key="calc_undo"):
             st.session_state.sel.pop()
-            st.experimental_rerun()
+            st.rerun()
 
 # ─── Colorează simbolurile roșii pe butoanele de cărți ───────────────────────
 components.html("""
